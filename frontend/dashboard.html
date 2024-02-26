@@ -7,13 +7,52 @@
     <title>Living+</title>
     <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            background-color: #E2E3E6;
+        }
+        .my-card {
+            font-family: 'Catamaran';
+            font-style: normal;
+            border: 2px solid #3682F4; /* Adds a blue outline */
+            border-radius: 15px; /* Rounds the corners of the card */
+        }
+        .my-card .card-body .btn {
+            display: block; /* Makes the button a block element */
+            margin: 0 auto; /* Automatically calculates equal left and right margins */
+            text-align: center; /* Centers the text inside the button */
+        }
+    </style>
   </head>
   <body>
     <div class="rectangle"></div>
     <main>
-        <h1>Welcome Back,</h1>  
+        <h1>Welcome back,</h1>
         <h1>Agrim Sharma</h1>  
     </main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card my-card card-spacing-first" style="width: 22rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Groups</h5>
+                      <p class="card-text">View latest updates from your groups!</p>
+                      <a href="#" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card my-card card-spacing-second" style="width: 22rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Saved Locations</h5>
+                      <p class="card-text">View your prized housing locations!</p>
+                      <a href="#" class="btn btn-primary">Go</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
   </body>
 </html>
