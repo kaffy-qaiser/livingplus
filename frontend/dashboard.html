@@ -1,58 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Living+</title>
-    <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="styles/dashboard.css">
     <style>
-        body {
-            background-color: #E2E3E6;
-        }
-        .my-card {
-            font-family: 'Catamaran';
+        body, h1, h2, h3, h4, h5, p {
+            font-family: 'Catamaran', sans-serif;
             font-style: normal;
-            border: 2px solid #3682F4; /* Adds a blue outline */
-            border-radius: 15px; /* Rounds the corners of the card */
         }
-        .my-card .card-body .btn {
-            display: block; /* Makes the button a block element */
-            margin: 0 auto; /* Automatically calculates equal left and right margins */
-            text-align: center; /* Centers the text inside the button */
+        .card {
+            border: 1px solid blue; /* Add blue outline to cards */
+        }
+        .container {
+            max-width: 80%; /* Adjust based on your preference */
+            margin: auto;
+            padding-top: 30px; /* Move all elements down by 30px */
+        }
+        h1 {
+            text-align: left;
+            margin-left: 0; /* Align to the left side of the container */
+        }
+        .larger-h1 {
+            font-size: 2.5em; /* Increased size for 'Agrim Sharma' */
         }
     </style>
-  </head>
-  <body>
-    <div class="rectangle"></div>
-    <main>
-        <h1>Welcome back,</h1>
-        <h1>Agrim Sharma</h1>  
-    </main>
-    <div class="container">
+</head>
+<body>
+    <main class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="card my-card card-spacing-first" style="width: 22rem;">
+            <div class="col-12"> 
+                <h1>Welcome back,</h1>
+                <h1 class="larger-h1">Agrim Sharma</h1> <!-- Apply the custom class for larger text -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 mb-4">
+                <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Groups</h5>
-                      <p class="card-text">View latest updates from your groups!</p>
-                      <a href="#" class="btn btn-primary">Go</a>
+                        <h5 class="card-title">Groups</h5>
+                        <p class="card-text">Updates regarding group information.</p>
+                        <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card my-card card-spacing-second" style="width: 22rem;">
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Saved Locations</h5>
-                      <p class="card-text">View your prized housing locations!</p>
-                      <a href="#" class="btn btn-primary">Go</a>
+                        <h5 class="card-title">Favorites</h5>
+                        <p class="card-text">View saved items.</p>
+                        <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
-  </body>
+    </main>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 </html>

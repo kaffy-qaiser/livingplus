@@ -1,41 +1,25 @@
-.rectangle {
-    position: absolute;
-    width: 227px;
-    height: 900px;
-    left: 0px;
-    top: -1px;
-    background: #3682F4;
-}
-h1 {
-    margin: 0;
-    padding-left: 250px;
+h1, h2, h3, h4, h5, p {
     font-family: 'Catamaran';
     font-style: normal;
-    font-weight: 400;
-    font-size: 44px;
-    color: #000000;
 }
-main h1 {
-    margin-top: 20px;
+.card {
+    border: 2px solid #3682F4; /* Add blue outline to cards */
 }
-
-h1:first-child {
-    margin-bottom: -20px; 
+.container .row {
+    max-width: 80%; /* Adjust based on your preference */
+    margin: auto;
 }
-
-h1:last-child {
-    font-weight: 900; /* Makes the last h1 element bold */
-    font-size: 64px; 
+h1 {
+    text-align: left;
+    margin-left: 0; /* Align to the left side of the container */
+}
+.larger-h1 {
+    font-size: 2.5em; /* Increased size for 'Agrim Sharma' */
 }
 body {
     background-color: #E2E3E6;
 }
-.card-spacing-first {
-    margin-left: 50px;
-}
-.card-spacing-second {
-    margin-left: -100px; 
-}
-.my-card {
-    border: 2px solid blue; /* Adds a blue outline */
+.container .row {
+    max-width: 80%; /* Adjust based on your preference */
+    margin: auto;
 }
