@@ -3,23 +3,23 @@ h1, h2, h3, h4, h5, p {
     font-style: normal;
 }
 .card {
-    border: 2px solid #3682F4; /* Add blue outline to cards */
+    border: 2px solid #3682F4;
 }
 .container .row {
-    max-width: 80%; /* Adjust based on your preference */
+    max-width: 80%;
     margin: auto;
 }
 h1 {
     text-align: left;
-    margin-left: 0; /* Align to the left side of the container */
+    margin-left: 0;
 }
 .larger-h1 {
-    font-size: 2.5em; /* Increased size for 'Agrim Sharma' */
+    font-size: 2.5em;
 }
 body {
     background-color: #E2E3E6;
 }
 .container .row {
-    max-width: 80%; /* Adjust based on your preference */
+    max-width: 80%;
     margin: auto;
 }
