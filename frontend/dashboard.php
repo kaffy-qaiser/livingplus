@@ -100,12 +100,24 @@
     
         </ul>
     </div>
-    <!--  Adjustable dashbpard cards -->
     <main class="container">
         <div class="row">
             <div class="col-12"> 
                 <h1>Welcome back,</h1>
-                <h1 class="larger-h1">Agrim Sharma</h1> 
+                <?php
+                // Ensure the session is started (it should be if coming from validate_login.php)
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                // Display the username stored in the session
+                // Ensure you check if it's set to avoid errors
+                if (isset($_SESSION['username'])) {
+                    echo "<h1 class=\"larger-h1\">" . htmlspecialchars($_SESSION['username'], ENT_QUOTES, 'UTF-8') . "</h1>";
+                } else {
+                    // If the username isn't set in the session, display a generic message or redirect
+                    echo "<h1 class=\"larger-h1\">User</h1>";
+                }
+                ?>
             </div>
         </div>
         <div class="row">
@@ -181,3 +193,4 @@
     </script>
 </body>
 </html>
+

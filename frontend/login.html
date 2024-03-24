@@ -9,16 +9,16 @@
 </head>
 <body>
 <div class="login-container">
-    <form class="login-form">
+    <form class="login-form" action="/backend/validate_login.php" method="post">
         <div class="logo-container">
             <img src="images/newlogo.png" alt="Logo" class="center-logo">
         </div>
         <div class="form-group floating-label">
-            <input id="username" type="text" required>
+            <input id="username" type="text" name="username" required>
             <label for="username">Username</label>
         </div>
         <div class="form-group floating-label">
-            <input id="password" type="password" required>
+            <input id="password" type="password" name="password" required>
             <label for="password">Password</label>
             <a href="/reset-password" class="forgot-password">Forgot Password?</a>
         </div>
