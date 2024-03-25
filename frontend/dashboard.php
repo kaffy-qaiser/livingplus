@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,14 +43,14 @@
         </div>
         <ul class="nav-list">
             <li>
-                <a href="#">
+                <a href="dashboard.php">
                     <i class='bx bx-home'></i>
                     <span class="links_name">Home</span>
                 </a>
                 <span class="tooltip">Home</span>
             </li>
             <li>
-                <a href="#">
+                <a href="search.html">
                     <i class='bx bx-search'></i>
                     <span class="links_name">Search</span>
                 </a>
@@ -70,7 +71,7 @@
                 <span class="tooltip">Messages</span>
             </li>
             <li>
-                <a href="#">
+                <a href="reviews.html">
                     <i class='bx bx-star'></i>
                     <span class="links_name">Reviews</span>
                 </a>
@@ -90,8 +91,8 @@
                 </a>
                 <span class="tooltip">Profile</span>
             </li>
-            <li class="profile">
-                <a href="#">
+            <li class="logout">
+                <a href="/backend/logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Logout</span>
                 </a>
