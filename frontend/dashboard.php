@@ -71,7 +71,7 @@
                 <span class="tooltip">Messages</span>
             </li>
             <li>
-                <a href="reviews.html">
+                <a href="reviews.php">
                     <i class='bx bx-star'></i>
                     <span class="links_name">Reviews</span>
                 </a>

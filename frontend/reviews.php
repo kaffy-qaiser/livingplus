@@ -1,3 +1,23 @@
+<?php
+// Include the database connection from 'db.php'
+include '../backend/db.php';
+
+// Initialize an empty array for housing data
+$housingData = [];
+
+try {
+    // Prepare a SQL query to select housing information
+    $sql = "SELECT name, address FROM listings"; // Adjust your table and column names accordingly
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    
+    // Fetch all housing data
+    $housingData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,50 +103,23 @@
     <main class="container">
         <div class="grid-container">
             <h1>Housing Reviews</h1>
-            <input type="search" id="searchBar" class="search-bar" placeholder="Search...">
-            <button type="button" class="btn btn-search">Search</button>
-
+            <!-- Additional static or dynamic content here -->
         </div>
+        
         <div class="row">
-            <div class="col-lg-4 col-md-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Grandmarc at The Corner</h5>
-                        <p class="card-text">Address: 301 15th St NW, Charlottesville, VA 22903</p>
-                        <div class="rating">
-                            Rating: ★★★☆☆
+            <?php foreach ($housingData as $housing): ?>
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($housing['name']); ?></h5>
+                            <p class="card-text">Address: <?= htmlspecialchars($housing['address']); ?></p>
+                            <!-- You can add more dynamic content here, such as ratings or reviews -->
+                            <button type="button" class="btn btn-primary">View Reviews</button>
+                            <a href="add_review.php?name=<?= urlencode($housing['name']); ?>" class="btn btn-secondary">Add Review</a>
                         </div>
-                        <button type="button" class="btn btn-primary">View Reviews</button>
-                        <button type="button" class="btn btn-secondary">Add Review</button>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">The Flats at West Village</h5>
-                        <p class="card-text">Address: 852 W Main St #100, Charlottesville, VA 22903</p>
-                        <div class="rating">
-                            Rating: ★★★★☆
-                        </div>
-                        <button type="button" class="btn btn-primary">View Reviews</button>
-                        <button type="button" class="btn btn-secondary">Add Review</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">The Kenilworth</h5>
-                        <p class="card-text">Address: 1725 Jefferson Park Ave, Charlottesville, VA 22903</p>
-                        <div class="rating">
-                            Rating: ★★★★★
-                        </div>
-                        <button type="button" class="btn btn-primary">View Reviews</button>
-                        <button type="button" class="btn btn-secondary">Add Review</button>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </main>
     <!--  The navbar was taken from this youtube video: https://www.youtube.com/watch?v=wEfaoAa99XY-->

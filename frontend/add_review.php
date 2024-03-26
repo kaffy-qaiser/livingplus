@@ -1,3 +1,8 @@
+<?php
+// Assuming 'name' is passed as a query parameter to this script
+$listingName = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : 'Unknown Listing';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,73 +17,6 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="styles/add_review.css">
     <link rel="stylesheet" type="text/css" href="styles/search.css">
-    <style>
-        .title {
-            text-align: center; /* Centers the text horizontally within its container */
-            margin-top: 0px; /* Adjust if necessary to align vertically */
-        }
-
-        body, html {
-            height: 100%; /* Full height */
-            margin: 0; /* Reset default margin */
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            background-color: #f8f9fa; /* Optional: background color */
-        }
-    
-        .slider-label {
-            font-size: 14px; /* Adjust the font size to fit your design */
-            margin-bottom: 5px; /* Add some space between the label and the slider */
-            color: #333; /* Optional: Set the text color */
-        }
-        .container {
-            width: 700px; /* Set width */
-            height: 635px; /* Set height */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Distribute space inside container */
-            padding: 20px;
-            border: 5px solid #3682F4; /* Corrected: Added 'solid' for the border style */
-            border-radius: 12px; /* Optional: for rounded corners */
-            background-color: white; /* Container background color */
-        }
-        .inputs input, textarea {
-            width: 100%; /* Make input and textarea take full width */
-            margin-bottom: 10px; /* Add some space below each input */
-        }
-    
-        .sliders {
-            display: flex;
-            justify-content: space-between;
-        }
-    
-        .slider-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-    
-        .action-buttons {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-        .textarea-container {
-            position: relative; /* Set the textarea container's position to relative */
-        }
-
-        .word-count-display {
-            position: absolute; /* Position the word count display absolutely within the textarea container */
-            bottom: 15px; /* Place it towards the bottom of the textarea container */
-            right: 10px; /* Place it towards the right of the textarea container */
-            background-color: rgba(255, 255, 255, 0.7); /* Optional: add a slight background for readability */
-            padding: 0 5px; /* Optional: add some padding around the text */
-            border-radius: 5px; /* Optional: round the corners */
-        }
-    </style>
-    
-    
 </head>
 <body>
     <div class="sidebar">
@@ -147,47 +85,50 @@
         </ul>
     </div>
     <div class="container">
-        <h2 class="title">The Standard</h2>
-        <div class="inputs">
-            <input type="text" placeholder="Title" class="input-title"/>
-            <input type="date" class="input-date"/>
-        </div>
-        <div class="textarea-container">
-            <textarea placeholder="Type the review here..." id="reviewTextArea" oninput="updateWordCount()"></textarea>
-            <div class="word-count-display">
-                <span id="wordCount">0</span>/100 words
+        <h2 class="title"><?= $listingName; ?></h2>
+        <form action="../backend/insert_review.php" method="post">
+            <input type="hidden" name="listingName" value="<?= htmlspecialchars($listingName); ?>"/>
+            <div class="inputs">
+                <input type="text" name="reviewTitle" placeholder="Title" class="input-title"/>
+                <input type="date" name="reviewDate" class="input-date"/>
             </div>
-        </div>
-        <div class="sliders">
-            <div class="left-sliders">
-                <div class="slider-container">
-                    <span class="slider-label">Quality</span> <!-- Add this line -->
-                    <input type="range" min="1" max="10" class="slider" id="slider1">
-                    <span id="slider1Value">5</span>
-                </div>
-                <div class="slider-container">
-                    <span class="slider-label">Location</span> <!-- Add this line -->
-                    <input type="range" min="1" max="10" class="slider" id="slider2">
-                    <span id="slider2Value">5</span>
+            <div class="textarea-container">
+                <textarea placeholder="Type the review here..." name="review" id="reviewTextArea" oninput="updateWordCount()"></textarea>
+                <div class="word-count-display">
+                    <span id="wordCount">0</span>/100 words
                 </div>
             </div>
-            <div class="right-sliders">
-                <div class="slider-container">
-                    <span class="slider-label">Experience</span> <!-- Add this line -->
-                    <input type="range" min="1" max="10" class="slider" id="slider3">
-                    <span id="slider3Value">5</span>
+            <div class="sliders">
+                <div class="left-sliders">
+                    <div class="slider-container">
+                        <span class="slider-label">Quality</span>
+                        <input type="range" min="1" max="10" class="slider" name="quality" id="slider1">
+                        <span id="slider1Value">5</span>
+                    </div>
+                    <div class="slider-container">
+                        <span class="slider-label">Location</span>
+                        <input type="range" min="1" max="10" class="slider" name="location" id="slider2">
+                        <span id="slider2Value">5</span>
+                    </div>
                 </div>
-                <div class="slider-container">
-                    <span class="slider-label">Overall Rating</span> <!-- Add this line -->
-                    <input type="range" min="1" max="10" class="slider" id="slider4">
-                    <span id="slider4Value">5</span>
+                <div class="right-sliders">
+                    <div class="slider-container">
+                        <span class="slider-label">Affordability</span>
+                        <input type="range" min="1" max="10" class="slider" name="affordability" id="slider3">
+                        <span id="slider3Value">5</span>
+                    </div>
+                    <div class="slider-container">
+                        <span class="slider-label">Amenities</span>
+                        <input type="range" min="1" max="10" class="slider" name="amenities" id="slider4">
+                        <span id="slider4Value">5</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="action-buttons">
-            <button type="button" class="btn btn-secondary">Cancel</button>
-            <button type="button" class="btn btn-primary">Add Review</button>
-        </div>
+            <div class="action-buttons">
+                <a href="reviews.php" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Add Review</button>
+            </div>
+        </form>
     </div>
 
     <script>
@@ -201,15 +142,12 @@
         function updateWordCount() {
             var textarea = document.getElementById('reviewTextArea');
             var wordCount = 0;
-            // Split the text into words based on spaces and new lines
             var words = textarea.value.match(/\b[-?(\w+)?]+\b/gi);
             if (words) {
                 wordCount = words.length;
-                // Limit the word count to 100
                 if (wordCount > 100) {
-                    // Trim the text to the first 100 words
                     textarea.value = words.slice(0, 100).join(' ');
-                    wordCount = 100; // Update word count to 100, as we've trimmed the text
+                    wordCount = 100;
                 }
             }
             document.getElementById('wordCount').innerText = wordCount;
