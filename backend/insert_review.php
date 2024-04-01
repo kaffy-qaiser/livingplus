@@ -4,7 +4,7 @@ include 'db.php'; // Adjust the path to your db.php file if necessary
 // Check if the request is POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Extract and sanitize input
-    $listingName = htmlspecialchars($_POST['listingName']);
+    $listingName = htmlssecialchars($_POST['listingName']);
     $reviewDate = $_POST['reviewDate']; // Assuming this is correctly formatted for your DB
     $amenities = (int)$_POST['amenities'];
     $affordability = (int)$_POST['affordability'];
