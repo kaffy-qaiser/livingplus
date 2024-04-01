@@ -75,8 +75,8 @@
             <div class="col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Favorites</h5>
-                        <p class="card-text">View saved items.</p>
+                        <h5 class="card-title">Items</h5>
+                        <p class="card-text">View your reviews and favorites!.</p>
                         <a href="#" class="btn btn-primary">View</a>
                     </div>
                 </div>

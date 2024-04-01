@@ -37,9 +37,9 @@
             <li>
                 <a href="#">
                     <i class='bx bx-heart'></i>
-                    <span class="links_name">Favorites</span>
+                    <span class="links_name">Items</span>
                 </a>
-                <span class="tooltip">Favorites</span>
+                <span class="tooltip">Items</span>
             </li>
             <li>
                 <a href="#">
