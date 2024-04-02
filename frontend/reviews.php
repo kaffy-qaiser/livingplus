@@ -53,8 +53,8 @@ if ($dbHandle) {
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($housing['name']); ?></h5>
-                            <p class="card-text">Address: <?= htmlspecialchars($housing['address']); ?></p>
+                            <h5 class="card-title"><?= html_entity_decode($housing['name']); ?></h5>
+                            <p class="card-text">Address: <?= html_entity_decode($housing['address']); ?></p>
                             <!-- You can add more dynamic content here, such as ratings or reviews -->
                             <button type="button" class="btn btn-primary" onclick="window.location.href='view_reviews.php?id=<?= urlencode($housing['id']); ?>'">View Reviews</button>
                             <a href="add_review.php?name=<?= urlencode($housing['name']); ?>" class="btn btn-secondary">Add Review</a>

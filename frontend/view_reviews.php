@@ -40,8 +40,8 @@ if ($listingId > 0) {
                     <div class="col-lg-4 col-md-12 mb-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"><?= htmlspecialchars($review['review_title']); ?></h5>
-                                <p class="card-text"><?= htmlspecialchars($review['review']); ?></p>
+                                <h5 class="card-title"><?= html_entity_decode($review['review_title']); ?></h5>
+                                <p class="card-text"><?= html_entity_decode($review['review']); ?></p>
                                 <ul>
                                     <li>Affordability: <?= htmlspecialchars($review['affordability']); ?></li>
                                     <li>Location: <?= htmlspecialchars($review['location']); ?></li>

@@ -19,6 +19,6 @@
     session_destroy();
 
     // Redirect to login page
-    header("Location: /frontend/login.html");
+    header("Location: ../frontend/login.php");
     exit();
 ?>

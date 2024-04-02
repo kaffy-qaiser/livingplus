@@ -76,9 +76,9 @@ if(isset($_SESSION['user_id'])) {
         foreach ($reviews as $review) {
             echo '<div class="card mb-3">';
             echo '<div class="card-body">';
-            echo '<h5 class="card-title">' . htmlspecialchars($review['listing_name']) . '</h5>';
+            echo '<h5 class="card-title">' . html_entity_decode($review['listing_name']) . '</h5>';
             echo '<h6 class="card-subtitle mb-2 text-muted">Date: ' . htmlspecialchars($review['review_date']) . '</h6>';
-            echo '<p class="card-text">' . htmlspecialchars($review['review']) . '</p>';
+            echo '<p class="card-text">' . html_entity_decode($review['review']) . '</p>';
             echo '<p class="card-text">Amenities: ' . htmlspecialchars($review['amenities']) . '</p>';
             echo '<p class="card-text">Affordability: ' . htmlspecialchars($review['affordability']) . '</p>';
             echo '<p class="card-text">Location: ' . htmlspecialchars($review['location']) . '</p>';

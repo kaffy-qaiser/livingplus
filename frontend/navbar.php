@@ -70,7 +70,7 @@
                 <span class="tooltip">Profile</span>
             </li>
             <li class="logout">
-                <a href="/backend/logout.php">
+                <a href="../backend/logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Logout</span>
                 </a>
