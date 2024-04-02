@@ -2,11 +2,14 @@
 include '../backend/db.php'; // Ensure this uses pg_connect for PostgreSQL
 
 $listingId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+//echo "Listing ID: " . $listingId; // Remove this line after debugging
+
 $reviewsData = [];
 
 if ($listingId > 0) {
     try {
-        $query = "SELECT review_id, affordability, location, amenities, quality, review_title, review 
+        
+        $query = "SELECT affordability, location, amenities, quality, review_title, review 
                   FROM reviews 
                   WHERE listing_id = $1";
 
@@ -16,6 +19,7 @@ if ($listingId > 0) {
         if ($result) {
             $reviewsData = pg_fetch_all($result);
         }
+        
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }
