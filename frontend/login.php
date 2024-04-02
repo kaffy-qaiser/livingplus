@@ -1,3 +1,7 @@
+<?php
+// Include db.php at the start to ensure PHP code is executed before sending HTML content.
+include_once '../backend/db.php'; // Adjust the path as necessary to point to your db.php file
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
