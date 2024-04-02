@@ -52,7 +52,7 @@ if ($dbHandle) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title"><?= html_entity_decode($housing['name']); ?></h5>
-                            <p class="card-text">Address: <?= html_entity_decode($housing['address']); ?></p>
+                            <p class="card-text">Address: <?= preg_replace('/^(.*)$/', '$1', html_entity_decode($housing['address'])); ?></p>
                             <button type="button" class="btn btn-primary" onclick="window.location.href='view_reviews.php?id=<?= urlencode($housing['id']); ?>'">View Reviews</button>
                             <a href="add_review.php?name=<?= urlencode($housing['name']); ?>" class="btn btn-secondary">Add Review</a>
                         </div>
