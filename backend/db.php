@@ -5,7 +5,7 @@ $host = "db";
 $port = "5432";
 $database = "example";
 $user = "localuser";
-$password = "pCfxODw_OGww";
+$password = "cs4640LocalUser!";
 
 $connectionString = "host=$host port=$port dbname=$database user=$user password=$password";
 $dbHandle = pg_connect($connectionString);
