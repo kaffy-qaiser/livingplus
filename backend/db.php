@@ -11,7 +11,7 @@ $connectionString = "host=$host port=$port dbname=$database user=$user password=
 $dbHandle = pg_connect($connectionString);
 
 if ($dbHandle) {
-    echo "Success connecting to database\n";
+   // echo "Success connecting to database\n";
 
     // SQL to create tables
     $createLoginTable = "
@@ -52,7 +52,7 @@ if ($dbHandle) {
     pg_query($dbHandle, $createListingsTable) or die('Query failed: ' . pg_last_error());
     pg_query($dbHandle, $createReviewsTable) or die('Query failed: ' . pg_last_error());
 
-    echo "Tables created successfully";
+   // echo "Tables created successfully";
 } else {
     // Using pg_last_error() to get more insight into the connection failure
     $error = pg_last_error($dbHandle);

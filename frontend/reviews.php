@@ -1,20 +1,25 @@
 <?php
-// Include the database connection from 'db.php'
-include '../backend/db.php';
+// Assuming 'db.php' contains the PostgreSQL connection code shown in your second snippet
+include '../backend/db.php'; // Adjust the path as necessary
 
 // Initialize an empty array for housing data
 $housingData = [];
 
-try {
-    // Prepare a SQL query to select housing information
-    $sql = "SELECT id, name, address FROM listings"; // Adjust your table and column names accordingly
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    
-    // Fetch all housing data
-    $housingData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+if ($dbHandle) {
+    try {
+        // Prepare a SQL query to select housing information
+        $result = pg_query($dbHandle, "SELECT id, name, address FROM listings");
+        if (!$result) {
+            throw new Exception("Query failed: " . pg_last_error($dbHandle));
+        }
+        
+        // Fetch all housing data
+        $housingData = pg_fetch_all($result, PGSQL_ASSOC);
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
+} else {
+    echo "Database connection not established.";
 }
 ?>
 

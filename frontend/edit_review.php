@@ -1,28 +1,52 @@
 <?php
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include 'navbar.php';
-include '../backend/db.php';  // Include your database connection
+include '../backend/db.php';  // Make sure this file uses pg_connect
+
+//echo "Debugging: Included files<br>";
 
 // Get review_id from the query string and sanitize it
 $review_id = isset($_GET['review_id']) ? intval($_GET['review_id']) : 0;
 
-// Prepare and execute the query to get the specific review
-$stmt = $conn->prepare("SELECT reviews.*, listings.name AS listing_name FROM reviews JOIN listings ON reviews.listing_id = listings.id WHERE reviews.review_id = :review_id");
-$stmt->execute(['review_id' => $review_id]);
+//echo "Debugging: Review ID is $review_id<br>";
 
-// Fetch the review data
-$review = $stmt->fetch(PDO::FETCH_ASSOC);
+// Initialize review array
+$review = [];
 
-// If the review is not found, redirect or handle the error appropriately
-if (!$review) {
-    echo "<script>alert('Review not found.'); window.location = 'reviews.php';</script>";
-    exit;
+if ($dbHandle) {
+    //echo "Debugging: Database handle is valid<br>";
+
+    // Prepare and execute the query to get the specific review
+    $result = pg_prepare($dbHandle, "fetch_review", "SELECT reviews.*, listings.name AS listing_name FROM reviews JOIN listings ON reviews.listing_id = listings.id WHERE reviews.id = $1");
+    $result = pg_execute($dbHandle, "fetch_review", array($review_id));
+    
+    if ($result) {
+        //echo "Debugging: Query executed<br>";
+        // Fetch the review data
+        $review = pg_fetch_assoc($result);
+
+        if (!$review) {
+            echo "<script>alert('Review not found.'); window.location = 'reviews.php';</script>";
+            exit;
+        } else {
+            //echo "Debugging: Review fetched<br>";
+        }
+    } else {
+       // echo "Debugging: Failed to execute query<br>";
+    }
+} else {
+    //echo "Database connection error.<br>";
+    exit; // Or handle the error as appropriate
 }
 
-// Sanitize output
-foreach($review as $key => $value) {
-    $review[$key] = htmlspecialchars($value);
-}
+// Debugging message to ensure PHP code execution reaches this point
+//echo "Debugging: Reached the end of PHP script<br>";
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +69,7 @@ foreach($review as $key => $value) {
     <div class="container">
     <h2 class="title"><?= $review['listing_name']; ?></h2>
     <form action="../backend/update_review.php" method="post">
-        <input type="hidden" name="reviewId" value="<?= $review['review_id']; ?>"/>
+        <input type="hidden" name="reviewId" value="<?= $review['id']; ?>"/>
         <div class="inputs">
             <input type="text" name="reviewTitle" placeholder="Title" class="input-title" value="<?= $review['review_title']; ?>"/>
             <input type="date" name="reviewDate" class="input-date" value="<?= $review['review_date']; ?>"/>

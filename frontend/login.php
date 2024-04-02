@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="login-container">
-    <form class="login-form" action="/backend/validate_login.php" method="post">
+    <form class="login-form" action="../backend/validate_login.php" method="post">
         <div class="logo-container">
             <img src="images/newlogo.png" alt="Logo" class="center-logo">
         </div>
