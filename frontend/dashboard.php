@@ -77,7 +77,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Items</h5>
                         <p class="card-text">View your reviews and favorites!.</p>
-                        <a href="#" class="btn btn-primary">View</a>
+                        <a href="items.php" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>

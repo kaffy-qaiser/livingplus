@@ -35,7 +35,7 @@
                 <span class="tooltip">Search</span>
             </li>
             <li>
-                <a href="#">
+                <a href="items.php">
                     <i class='bx bx-heart'></i>
                     <span class="links_name">Items</span>
                 </a>
