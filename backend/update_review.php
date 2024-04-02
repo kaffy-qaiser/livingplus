@@ -1,7 +1,6 @@
 <?php
-include 'db.php'; // Make sure you have included the database connection
+include 'db.php';
 
-// Check if we have a POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get review_id from the POST data and sanitize it
     $review_id = isset($_POST['reviewId']) ? intval($_POST['reviewId']) : 0;

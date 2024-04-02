@@ -1,6 +1,5 @@
 <?php
-// Assuming 'db.php' contains the PostgreSQL connection code shown in your second snippet
-include '../backend/db.php'; // Adjust the path as necessary
+include '../backend/db.php';
 
 // Initialize an empty array for housing data
 $housingData = [];
@@ -45,7 +44,6 @@ if ($dbHandle) {
     <main class="container">
         <div class="grid-container">
             <h1>Housing Reviews</h1>
-            <!-- Additional static or dynamic content here -->
         </div>
         
         <div class="row">
@@ -55,7 +53,6 @@ if ($dbHandle) {
                         <div class="card-body">
                             <h5 class="card-title"><?= html_entity_decode($housing['name']); ?></h5>
                             <p class="card-text">Address: <?= html_entity_decode($housing['address']); ?></p>
-                            <!-- You can add more dynamic content here, such as ratings or reviews -->
                             <button type="button" class="btn btn-primary" onclick="window.location.href='view_reviews.php?id=<?= urlencode($housing['id']); ?>'">View Reviews</button>
                             <a href="add_review.php?name=<?= urlencode($housing['name']); ?>" class="btn btn-secondary">Add Review</a>
                         </div>

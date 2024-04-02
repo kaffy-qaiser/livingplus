@@ -19,8 +19,6 @@ $dbHandle = pg_connect($connectionString);
 
 // Function to create tables
 function createTables($dbHandle) {
-    //$res  = pg_query($dbHandle, "drop table if exists listings CASCADE;");
-
     // SQL to create login table
     $createLoginTable = "
         CREATE TABLE IF NOT EXISTS login (
@@ -69,17 +67,15 @@ function createTables($dbHandle) {
     pg_query($dbHandle, $createLoginTable) or die('Query failed: ' . pg_last_error($dbHandle));
     pg_query($dbHandle, $createListingsTable) or die('Query failed: ' . pg_last_error($dbHandle));
     pg_query($dbHandle, $createReviewsTable) or die('Query failed: ' . pg_last_error($dbHandle));
-   // pg_query($dbHandle, $insertDefaultUserSQL) or die('Query failed: ' . pg_last_error($dbHandle));
+    // pg_query($dbHandle, $insertDefaultUserSQL) or die('Query failed: ' . pg_last_error($dbHandle));
 
     
-    // Insert basic listings after creating tables
     // DO NOT UNCOMMENT
     //insertBasicListings($dbHandle);
 }
 
 // Function to insert basic listings
 function insertBasicListings($dbHandle) {
-    // SQL to insert basic listings
     $insertListingsSQL = "
         INSERT INTO listings (name, address) VALUES
         ('Shifty Shafts', '123 Main St'),
@@ -92,11 +88,8 @@ function insertBasicListings($dbHandle) {
 }
 
 if ($dbHandle) {
-    // Call the function to create tables and insert listings
     createTables($dbHandle);
-    //echo "Tables created and listings inserted successfully!";
 } else {
-    // If connection fails, output an error
     echo "An error occurred connecting to the database: " . pg_last_error($dbHandle);
 }
 

@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include 'db.php'; // Adjust the path to your db.php file if necessary
+include 'db.php';
 
 // Start the session at the top of the file
 if (session_status() === PHP_SESSION_NONE) {
@@ -25,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if user_id is set in session
     if (!isset($_SESSION['user_id'])) {
-        // User is not logged in
         echo "<script>alert('You must be logged in to submit a review.'); window.location = '../frontend/login.php';</script>";
         exit;
     }
@@ -46,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         } else {
             // Failed to insert review
-            // Replace the generic redirection lines with specific ones that include the listing name
             echo "<script>alert('Failed to submit review. Please try again later.'); window.location = '../frontend/add_review.php?name=" . urlencode($listingName) . "';</script>";
             exit;
         }

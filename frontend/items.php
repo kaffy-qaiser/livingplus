@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 include 'navbar.php';
-include '../backend/db.php'; // Adjust this path as necessary. Ensure db.php uses pg_connect for PostgreSQL.
+include '../backend/db.php';
 
 // Initialize reviews array
 $reviews = [];

@@ -4,48 +4,30 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include 'navbar.php';
-include '../backend/db.php';  // Make sure this file uses pg_connect
-
-//echo "Debugging: Included files<br>";
+include '../backend/db.php';  
 
 // Get review_id from the query string and sanitize it
 $review_id = isset($_GET['review_id']) ? intval($_GET['review_id']) : 0;
-
-//echo "Debugging: Review ID is $review_id<br>";
-
 // Initialize review array
 $review = [];
 
 if ($dbHandle) {
-    //echo "Debugging: Database handle is valid<br>";
-
     // Prepare and execute the query to get the specific review
     $result = pg_prepare($dbHandle, "fetch_review", "SELECT reviews.*, listings.name AS listing_name FROM reviews JOIN listings ON reviews.listing_id = listings.id WHERE reviews.id = $1");
     $result = pg_execute($dbHandle, "fetch_review", array($review_id));
     
     if ($result) {
-        //echo "Debugging: Query executed<br>";
         // Fetch the review data
         $review = pg_fetch_assoc($result);
-
         if (!$review) {
             echo "<script>alert('Review not found.'); window.location = 'reviews.php';</script>";
             exit;
-        } else {
-            //echo "Debugging: Review fetched<br>";
-        }
-    } else {
-       // echo "Debugging: Failed to execute query<br>";
-    }
+        } 
+    } 
 } else {
-    //echo "Database connection error.<br>";
     exit; // Or handle the error as appropriate
 }
-
-// Debugging message to ensure PHP code execution reaches this point
-//echo "Debugging: Reached the end of PHP script<br>";
 ?>
-
 
 
 <!DOCTYPE html>
@@ -67,47 +49,47 @@ if ($dbHandle) {
     <?php include 'navbar.php'; ?>
     
     <div class="container">
-    <h2 class="title"><?= $review['listing_name']; ?></h2>
-    <form action="../backend/update_review.php" method="post">
-        <input type="hidden" name="reviewId" value="<?= $review['id']; ?>"/>
-        <div class="inputs">
-            <input type="text" name="reviewTitle" placeholder="Title" class="input-title" value="<?= $review['review_title']; ?>"/>
-            <input type="date" name="reviewDate" class="input-date" value="<?= $review['review_date']; ?>"/>
-        </div>
-        <div class="textarea-container">
-            <textarea placeholder="Type the review here..." name="reviewText" id="reviewTextArea" oninput="updateWordCount()"><?= $review['review']; ?></textarea>
-            <div class="word-count-display">
-                <span id="wordCount">0</span>/100 words
+        <h2 class="title"><?= $review['listing_name']; ?></h2>
+        <form action="../backend/update_review.php" method="post">
+            <input type="hidden" name="reviewId" value="<?= $review['id']; ?>"/>
+            <div class="inputs">
+                <input type="text" name="reviewTitle" placeholder="Title" class="input-title" value="<?= $review['review_title']; ?>"/>
+                <input type="date" name="reviewDate" class="input-date" value="<?= $review['review_date']; ?>"/>
             </div>
-        </div>
-        <div class="sliders">
-            <!-- Amenities slider -->
-            <div class="slider-container">
-                <label for="amenitiesSlider">Amenities: <span id="amenitiesSliderValue"><?= $review['amenities']; ?></span></label>
-                <input type="range" min="1" max="10" class="slider" name="amenities" id="amenitiesSlider" value="<?= $review['amenities']; ?>" oninput="updateSliderValue(this.id, this.value)">
+            <div class="textarea-container">
+                <textarea placeholder="Type the review here..." name="reviewText" id="reviewTextArea" oninput="updateWordCount()"><?= $review['review']; ?></textarea>
+                <div class="word-count-display">
+                    <span id="wordCount">0</span>/100 words
+                </div>
             </div>
-            <!-- Affordability slider -->
-            <div class="slider-container">
-                <label for="affordabilitySlider">Affordability: <span id="affordabilitySliderValue"><?= $review['affordability']; ?></span></label>
-                <input type="range" min="1" max="10" class="slider" name="affordability" id="affordabilitySlider" value="<?= $review['affordability']; ?>" oninput="updateSliderValue(this.id, this.value)">
+            <div class="sliders">
+                <!-- Amenities slider -->
+                <div class="slider-container">
+                    <label for="amenitiesSlider">Amenities: <span id="amenitiesSliderValue"><?= $review['amenities']; ?></span></label>
+                    <input type="range" min="1" max="10" class="slider" name="amenities" id="amenitiesSlider" value="<?= $review['amenities']; ?>" oninput="updateSliderValue(this.id, this.value)">
+                </div>
+                <!-- Affordability slider -->
+                <div class="slider-container">
+                    <label for="affordabilitySlider">Affordability: <span id="affordabilitySliderValue"><?= $review['affordability']; ?></span></label>
+                    <input type="range" min="1" max="10" class="slider" name="affordability" id="affordabilitySlider" value="<?= $review['affordability']; ?>" oninput="updateSliderValue(this.id, this.value)">
+                </div>
+                <!-- Quality slider -->
+                <div class="slider-container">
+                    <label for="qualitySlider">Quality: <span id="qualitySliderValue"><?= $review['quality']; ?></span></label>
+                    <input type="range" min="1" max="10" class="slider" name="quality" id="qualitySlider" value="<?= $review['quality']; ?>" oninput="updateSliderValue(this.id, this.value)">
+                </div>
+                <!-- Location slider -->
+                <div class="slider-container">
+                    <label for="locationSlider">Location: <span id="locationSliderValue"><?= $review['location']; ?></span></label>
+                    <input type="range" min="1" max="10" class="slider" name="location" id="locationSlider" value="<?= $review['location']; ?>" oninput="updateSliderValue(this.id, this.value)">
+                </div>
             </div>
-            <!-- Quality slider -->
-            <div class="slider-container">
-                <label for="qualitySlider">Quality: <span id="qualitySliderValue"><?= $review['quality']; ?></span></label>
-                <input type="range" min="1" max="10" class="slider" name="quality" id="qualitySlider" value="<?= $review['quality']; ?>" oninput="updateSliderValue(this.id, this.value)">
+            <div class="action-buttons">
+                <a href="reviews.php" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Update Review</button>
             </div>
-            <!-- Location slider -->
-            <div class="slider-container">
-                <label for="locationSlider">Location: <span id="locationSliderValue"><?= $review['location']; ?></span></label>
-                <input type="range" min="1" max="10" class="slider" name="location" id="locationSlider" value="<?= $review['location']; ?>" oninput="updateSliderValue(this.id, this.value)">
-            </div>
-        </div>
-        <div class="action-buttons">
-            <a href="reviews.php" class="btn btn-secondary">Cancel</a>
-            <button type="submit" class="btn btn-primary">Update Review</button>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
 
     <script>

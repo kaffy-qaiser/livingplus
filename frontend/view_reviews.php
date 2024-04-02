@@ -1,8 +1,7 @@
 <?php
-include '../backend/db.php'; // Ensure this uses pg_connect for PostgreSQL
+include '../backend/db.php'; 
 
 $listingId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-//echo "Listing ID: " . $listingId; // Remove this line after debugging
 
 $reviewsData = [];
 
@@ -28,7 +27,6 @@ if ($listingId > 0) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- head contents remain unchanged -->
 </head>
 <body>
     <?php include 'navbar.php'; ?>
