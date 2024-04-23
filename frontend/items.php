@@ -27,9 +27,11 @@ if(isset($_SESSION['user_id'])) {
         // Fetch the reviews and listing names
         if ($result) {
             $reviews = pg_fetch_all($result);
+        } else {
+            echo "<script>alert('Failed to fetch reviews. Please try again later.');</script>";
         }
     } else {
-        echo "Failed to connect to the database.";
+        echo "<script>alert('Failed to connect to the database.');</script>";
         exit;
     }
 }
@@ -67,6 +69,12 @@ if(isset($_SESSION['user_id'])) {
         .larger-h1 {
             font-size: 2.5em;
         }
+        .no-reviews {
+            background-color: #ffdddd; /* Light red background for emphasis */
+            border: 1px solid #ff0000;
+            padding: 10px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -88,7 +96,7 @@ if(isset($_SESSION['user_id'])) {
             echo '</div>';
         }
     } else {
-        echo '<p>No reviews found</p>';
+        echo '<div class="no-reviews"><p>No reviews found. Would you like to <a href="add_review.php">add a review</a>?</p></div>';
     }
     ?>
 </main>

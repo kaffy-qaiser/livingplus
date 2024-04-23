@@ -1,6 +1,7 @@
 <?php
+// validate_login.php
 session_start();
-include 'db.php'; 
+include 'db.php';
 
 // Function to send JSON response
 function sendJsonResponse($status, $message, $redirect = '') {
@@ -27,7 +28,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
         // Assuming password is stored in plain text for comparison (Consider using password hashing for security)
         if ($user && $user['password'] === $password) {
-            $_SESSION['user_id'] = $user['id']; 
+            $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['login_status'] = 'success';
 
@@ -35,7 +36,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             if (!empty($_POST['expectJson'])) {
                 sendJsonResponse('success', 'Login successful.', '../frontend/dashboard.php');
             } else {
-                header('Location: ../frontend/dashboard.php');    
+                header('Location: ../frontend/dashboard.php');
                 exit; // Always call exit after headers to ensure the script terminates
             }
         } else {
@@ -45,7 +46,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 sendJsonResponse('failed', 'Invalid username or password.');
             } else {
                 header('Location: ../frontend/login.php');  // Redirect back to the login page
-                exit; 
+                exit;
             }
         }
     } else {
@@ -55,7 +56,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             sendJsonResponse('error', 'An error occurred. Please try again.');
         } else {
             header('Location: ../frontend/login.php'); // Redirect back to the login page
-            exit; 
+            exit;
         }
     }
 } else {

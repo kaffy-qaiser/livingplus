@@ -88,13 +88,13 @@
         let sidebar = document.querySelector(".sidebar");
         let closeBtn = document.querySelector("#btn");
         let searchFilters = document.querySelector(".search-filters");
-    
+
         closeBtn.addEventListener("click", () => {
             sidebar.classList.toggle("open");
             menuBtnChange();
             adjustSearchFilters();
         });
-    
+
         function menuBtnChange() {
             if(sidebar.classList.contains("open")){
                 closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
@@ -102,31 +102,37 @@
                 closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");
             }
         }
-    
+
         function adjustSearchFilters() {
             const sidebarWidth = sidebar.classList.contains("open") ? 250 : 78;
             const searchFiltersWidth = window.innerWidth - sidebarWidth;
-    
+
             searchFilters.style.width = `${searchFiltersWidth}px`;
-    
+
             searchFilters.style.marginLeft = `${sidebarWidth}px`;
         }
-    
+
         document.addEventListener("DOMContentLoaded", adjustSearchFilters);
         closeBtn.addEventListener("click", adjustSearchFilters);
         window.addEventListener('resize', adjustSearchFilters);
-    
+
         function updateOutput(sliderId, outputId) {
             var slider = document.getElementById(sliderId);
             var output = document.getElementById(outputId);
             output.value = slider.value;
         }
-    
+
         function closeSidebar() {
             sidebar.classList.remove("open");
             menuBtnChange();
             adjustSearchFilters();
         }
+
+        (function() {
+            const a = 5;
+            const b = 10;
+            const result = a * b + 2;
+        })();
     
     </script>
 </body>

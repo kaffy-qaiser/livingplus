@@ -27,6 +27,10 @@ if ($listingId > 0) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>
@@ -51,13 +55,25 @@ if ($listingId > 0) {
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>No reviews found for this listing.</p>
+                <p id="noReviewsMsg">No reviews found for this listing.</p>
             <?php endif; ?>
         </div>
         <div class="back-button-container" style="margin-top: 20px;">
             <a href="reviews.php" class="btn btn-secondary">Back to Listings</a>
         </div>
     </div>
-    <!-- Scripts remain the same -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (!id || isNaN(id) || parseInt(id) <= 0) {
+                document.getElementById('noReviewsMsg').textContent = 'Invalid listing ID provided.';
+                document.querySelectorAll('.card, .back-button-container').forEach(el => el.style.display = 'none');
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

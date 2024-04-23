@@ -13,7 +13,7 @@ include_once '../backend/db.php';
 </head>
 <body>
 <div class="login-container">
-    <form class="login-form" action="../backend/validate_login.php" method="post">
+    <form class="login-form" id="loginForm">
         <div class="logo-container">
             <img src="images/newlogo.png" alt="Logo" class="center-logo">
         </div>
@@ -29,7 +29,7 @@ include_once '../backend/db.php';
         <div class="button-group">
             <button type="submit">Login</button>
             <img src="images/auth_or.png" alt="google_auth" class="authImage">
-            <button type="button" class="google-login">
+            <button type="button" class="google-login" onclick="window.location.href='google_auth.php';">
                 <img src="images/google_logo.png" alt="Google" class="google-logo">Sign in with Google
             </button>
         </div>
@@ -47,8 +47,36 @@ include_once '../backend/db.php';
             if (input.value.length > 0) input.classList.add('not-empty');
         });
     });
+</script>
+<script>
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
 
+        const formData = new FormData(loginForm);
+        formData.append('expectJson', true); // Add a flag to expect JSON response
 
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '../backend/validate_login.php', true);
+        xhr.onload = function() {
+            if (this.status === 200) {
+                const response = JSON.parse(this.responseText);
+                if (response.status === 'success') {
+                    // Redirect to the dashboard or handle success
+                    window.location.href = response.redirect;
+                } else {
+                    // Handle login failure
+                    alert(response.message);
+                }
+            } else {
+                console.error('Error during login:', this.statusText);
+            }
+        };
+        xhr.onerror = function() {
+            console.error('Network error occurred during login.');
+        };
+        xhr.send(formData);
+    });
 </script>
 </body>
 </html>

@@ -15,11 +15,16 @@ if ($dbHandle) {
         
         // Fetch all housing data
         $housingData = pg_fetch_all($result, PGSQL_ASSOC);
+        if (empty($housingData)) {
+            echo "<script>document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('noDataAlert').style.display = 'block';
+            });</script>";
+        }
     } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
+        echo "<script>alert('Error: " . addslashes($e->getMessage()) . "');</script>";
     }
 } else {
-    echo "Database connection not established.";
+    echo "<script>alert('Database connection not established.');</script>";
 }
 ?>
 
@@ -46,9 +51,12 @@ if ($dbHandle) {
         <div class="grid-container">
             <h1>Housing Reviews</h1>
         </div>
+        <div id="noDataAlert" class="alert alert-warning" style="display:none;">
+            No housing data available at the moment.
+        </div>
         
         <div class="row">
-            <?php foreach ($housingData as $housing): ?>
+            <?php if (!empty($housingData)): foreach ($housingData as $housing): ?>
                 <div class="col-lg-4 col-md-12 mb-4">
                     <div class="card">
                         <div class="card-body">
@@ -65,7 +73,9 @@ if ($dbHandle) {
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php endforeach; else: ?>
+                <script>document.getElementById('noDataAlert').style.display = 'block';</script>
+            <?php endif; ?>
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

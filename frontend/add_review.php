@@ -76,6 +76,18 @@ $listingName = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : 'Unknown
         });
     </script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            form.onsubmit = function(event) {
+                const titleInput = document.querySelector('.input-title');
+                if (titleInput.value.trim() === '') {
+                    alert('Please enter a title for the review.');
+                    event.preventDefault(); // Prevent the form from submitting
+                }
+            };
+        });
+    </script>
+    <script>
         function updateWordCount() {
             var textarea = document.getElementById('reviewTextArea');
             var wordCount = 0;
