@@ -26,6 +26,21 @@ if ($dbHandle) {
 } else {
     echo "<script>alert('Database connection not established.');</script>";
 }
+
+// Search functionality
+$searchTerm = '';
+if (isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    
+    $filteredHousingData = array_filter($housingData, function ($housing) use ($searchTerm) {
+        return stripos($housing['name'], $searchTerm) !== false;
+    });
+    
+    
+    $housingData = $filteredHousingData;
+}
+else {
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +58,38 @@ if ($dbHandle) {
 
     <link rel="stylesheet" type="text/css" href="styles/search.css">
     <link rel="stylesheet" href="styles/reviews.css">
+    <style>
+        .search-container {
+            width: 70%;
+            display: flex;
+            justify-content: right;
+            gap: 20px;
+        }
+
+        .search-container input[type="text"] {
+            width: 58%;
+            padding: 10px;
+            border: 2px solid #DDE2E5;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .search-container button:hover {
+            background-color: #464646;
+        }
+
+    </style>
 </head>
 <body>
     <?php include 'navbar.php'; ?>
@@ -50,6 +97,12 @@ if ($dbHandle) {
     <main class="container">
         <div class="grid-container">
             <h1>Housing Reviews</h1>
+            <div class="search-container">
+            <form action="" method="GET">
+                <input type="text" placeholder="Enter Listing.." name="search" value="<?= htmlspecialchars($searchTerm); ?>">
+                <button type="submit">Search</button>
+            </form>
+            </div>
         </div>
         <div id="noDataAlert" class="alert alert-warning" style="display:none;">
             No housing data available at the moment.
