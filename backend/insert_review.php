@@ -46,8 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         } else {
             // Failed to insert review
-            // Replace the generic redirection lines with specific ones that include the listing name
-            echo "<script>alert('Failed to submit review. Please try again later.'); window.location = '../frontend/add_review.php?name=" . urlencode($listingName) . "';</script>";
+            echo "<script>alert('Failed to submit review. Please try again later.'); window.location = '../frontend/add_review.php';</script>";
             exit;
         }
     } else {

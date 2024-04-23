@@ -39,24 +39,24 @@ $listingName = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : 'Unknown
                 <div class="left-sliders">
                     <div class="slider-container">
                         <span class="slider-label">Quality</span>
-                        <input type="range" min="1" max="10" value="5" class="slider" name="quality" id="slider1">
+                        <input type="range" min="1" max="10" class="slider" name="quality" id="slider1">
                         <span id="slider1Value">5</span>
                     </div>
                     <div class="slider-container">
                         <span class="slider-label">Location</span>
-                        <input type="range" min="1" max="10" value="5" class="slider" name="location" id="slider2">
+                        <input type="range" min="1" max="10" class="slider" name="location" id="slider2">
                         <span id="slider2Value">5</span>
                     </div>
                 </div>
                 <div class="right-sliders">
                     <div class="slider-container">
                         <span class="slider-label">Affordability</span>
-                        <input type="range" min="1" max="10" value="5" class="slider" name="affordability" id="slider3">
+                        <input type="range" min="1" max="10" class="slider" name="affordability" id="slider3">
                         <span id="slider3Value">5</span>
                     </div>
                     <div class="slider-container">
                         <span class="slider-label">Amenities</span>
-                        <input type="range" min="1" max="10" value="5" class="slider" name="amenities" id="slider4">
+                        <input type="range" min="1" max="10" class="slider" name="amenities" id="slider4">
                         <span id="slider4Value">5</span>
                     </div>
                 </div>
