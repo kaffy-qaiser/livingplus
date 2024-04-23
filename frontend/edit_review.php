@@ -85,7 +85,7 @@ if ($dbHandle) {
                 </div>
             </div>
             <div class="action-buttons">
-                <a href="reviews.php" class="btn btn-secondary">Cancel</a>
+                <a href="items.php" class="btn btn-secondary">Cancel</a>
                 <button type="submit" class="btn btn-primary">Update Review</button>
             </div>
         </form>

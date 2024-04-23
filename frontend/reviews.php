@@ -7,7 +7,8 @@ $housingData = [];
 if ($dbHandle) {
     try {
         // Prepare a SQL query to select housing information
-        $result = pg_query($dbHandle, "SELECT id, name, address FROM listings");
+        $result = pg_query($dbHandle, "SELECT id, name, address, picture_url, near_places, listing_url, 
+            max_baths, max_beds, price FROM listings");
         if (!$result) {
             throw new Exception("Query failed: " . pg_last_error($dbHandle));
         }
@@ -53,6 +54,12 @@ if ($dbHandle) {
                         <div class="card-body">
                             <h5 class="card-title"><?= html_entity_decode($housing['name']); ?></h5>
                             <p class="card-text">Address: <?= preg_replace('/^(.*)$/', '$1', html_entity_decode($housing['address'])); ?></p>
+                            <p class="card-text"><img src="<?= html_entity_decode($housing['picture_url']); ?>" alt="Image of <?= html_entity_decode($housing['name']); ?>" class="img-fluid"></p>
+                            <p class="card-text">Near Places: <?= html_entity_decode($housing['near_places']); ?></p>
+                            <p class="card-text">Max Beds: <?= html_entity_decode($housing['max_beds']); ?></p>
+                            <p class="card-text">Max Baths: <?= html_entity_decode($housing['max_baths']); ?></p>
+                            <p class="card-text">Price: $<?= number_format(html_entity_decode($housing['price']), 2); ?></p>
+                            <a href="<?= html_entity_decode($housing['listing_url']); ?>" target="_blank" class="btn btn-link">Visit Listing Website</a>
                             <button type="button" class="btn btn-primary" onclick="window.location.href='view_reviews.php?id=<?= urlencode($housing['id']); ?>'">View Reviews</button>
                             <a href="add_review.php?name=<?= urlencode($housing['name']); ?>" class="btn btn-secondary">Add Review</a>
                         </div>
