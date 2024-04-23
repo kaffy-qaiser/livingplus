@@ -1,0 +1,121 @@
+/* Base reset for a clean slate */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body, h1, h2, h3, h4, h5, p {
+    margin: 0;
+    padding: 0;
+    font-family: 'Catamaran', sans-serif;
+}
+
+/* Main container adjustments */
+.container {
+    max-width: 80%;
+    margin: auto;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Review card styling */
+.review-card {
+    background: linear-gradient(145deg, #f8f9fa, #ffffff);
+    border: none;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+/* Content within the review card */
+.review-content {
+    padding: 25px;
+}
+
+.review-title {
+    color: #0056b3;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.review-date {
+    color: #888;
+    font-size: 1em;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.review-text, .review-details {
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Specific details styling for clarity */
+.review-details:not(:last-child) {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+#edit-btn {
+    display: block;
+    background-color: #FFED59;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out;
+    border-color: transparent;
+    margin-right: auto;
+    width: fit-content;
+}
+
+#edit-btn:hover {
+    background-color: #218838;
+    color: white;
+}
+
+
+#delete-btn {
+    display: block;
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out;
+    border-color: transparent;
+    width: fit-content;
+    margin-left: auto;
+}
+
+#delete-btn:hover {
+    background-color: black;
+}
+.review-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.no-reviews {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.4em;
+    color: #888;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}

@@ -12,6 +12,7 @@
 </head>
 <body>
 <?php include 'navbar.php'; ?>
+<div class="content">
 <div class="search-filters">
     <form class="filter-form">
         <input type="text" id="search-bar" placeholder="Search...">
@@ -37,7 +38,24 @@
 
         <button type="submit">Search</button>
     </form>
+
+    <div id="map" style="height:400px; width:100%;"></div>
+
 </div>
+</div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpy3Oztzuh0AbMjeDRMACMTzejudEj9R0&callback=initMap"></script>
+
+<script>
+    function initMap() {
+        var mapOptions = {
+            center: {lat: 38.03330863055441, lng: -78.50840395966611},
+            zoom: 15
+        };
+        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    }
+</script>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

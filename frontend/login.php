@@ -1,6 +1,6 @@
 <?php
 // Include db.php at the start to ensure PHP code is executed before sending HTML content.
-include_once '../backend/db.php'; // Adjust the path as necessary to point to your db.php file
+include_once '../backend/db.php'; // Adjust the path as necessary to point to your db.php file // Adjust the path as necessary to point to your google_auth.php file
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@ include_once '../backend/db.php'; // Adjust the path as necessary to point to yo
         <div class="button-group">
             <button type="submit">Login</button>
             <img src="images/auth_or.png" alt="google_auth" class="authImage">
-            <button type="button" class="google-login">
+            <button type="button" class="google-login" onclick="window.location = 'google_auth.php'">
                 <img src="images/google_logo.png" alt="Google" class="google-logo">Sign in with Google
             </button>
         </div>

@@ -7,9 +7,15 @@ error_reporting(E_ALL);
 // Database connection parameters
 $host = "localhost";
 $port = "5432";
-$database = "hws7ug";
-$user = "hws7ug";
-$password = "pCfxODw_OGww";
+$database = "example";
+$user = "kaffyqaiser";
+$password = "cs4640LocalUser!";
+
+//$host = "localhost";
+//$port = "5432";
+//$database = "nnh6yc";
+//$user = "nnh6yc";
+//$password = "BjURXtaasLM5";
 
 // Connection string
 $connectionString = "host=$host port=$port dbname=$database user=$user password=$password";
@@ -69,7 +75,7 @@ function createTables($dbHandle) {
     pg_query($dbHandle, $createLoginTable) or die('Query failed: ' . pg_last_error($dbHandle));
     pg_query($dbHandle, $createListingsTable) or die('Query failed: ' . pg_last_error($dbHandle));
     pg_query($dbHandle, $createReviewsTable) or die('Query failed: ' . pg_last_error($dbHandle));
-   // pg_query($dbHandle, $insertDefaultUserSQL) or die('Query failed: ' . pg_last_error($dbHandle));
+    pg_query($dbHandle, $insertDefaultUserSQL) or die('Query failed: ' . pg_last_error($dbHandle));
 
     
     // Insert basic listings after creating tables

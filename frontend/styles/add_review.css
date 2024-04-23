@@ -1,6 +1,6 @@
-.title {
-    text-align: center;
-    margin-top: 0px;
+* {
+    box-sizing: border-box;
+    font-family: 'Catamaran', sans-serif;
 }
 
 body, html {
@@ -9,60 +9,115 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f8f9fa; 
-}
-#reviewTextArea {
-    width: 650px; /* Set the width of the textarea */
-    height: 255px; /* Set the height of the textarea */
-    resize: none; /* Prevent resizing */
+    background-color: #f8f9fa;
 }
 
-.slider-label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #333;
-}
 .container {
     width: 700px;
-    height: 635px;
+    max-width: 90%;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    border: 5px solid #3682F4;
-    border-radius: 12px;
-    background-color: white;
+    align-items: stretch;
 }
-.inputs input, textarea {
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.inputs, .textarea-container, .sliders, .action-buttons {
     width: 100%;
-    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Increased space between elements responsively */
 }
+
+.inputs input[type="text"], .inputs input[type="date"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.inputs input[type="text"] {
+    width: calc(84% - 15px);
+}
+
+.inputs input[type="date"] {
+    width: calc(16% - 15px);
+}
+
+.textarea-container textarea, .action-buttons a, .action-buttons button {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+#reviewTextArea {
+    height: 150px;
+    resize: none;
+    width: 99.3%;
+    margin-top: 20px;
+}
+
+.word-count-display {
+    position: relative;
+    text-align: right;
+    margin-top: -25px;
+    padding: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.action-buttons {
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.action-buttons a, .action-buttons button {
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    width: calc(50% - 15px);
+}
+
+.action-buttons a:hover, .action-buttons button:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.inputs input[type="text"]:focus, .inputs input[type="date"]:focus, .textarea-container textarea:focus {
+    border-color: #007bff;
+}
+
 
 .sliders {
     display: flex;
     justify-content: space-between;
 }
 
-.slider-container {
+.slider-group {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.action-buttons {
+.slider-container {
     display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
 }
-.textarea-container {
-    position: relative;
+.slider1, .slider4, .slider2, .slider3 {
+    margin-right: 100px;
 }
 
-.word-count-display {
-    position: absolute;
-    bottom: 15px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 0 5px;
-    border-radius: 5px;
-}

@@ -35,39 +35,32 @@
                 <span class="tooltip">Search</span>
             </li>
             <li>
-                <a href="items.php">
-                    <i class='bx bx-heart'></i>
-                    <span class="links_name">Items</span>
+                <a href="reviews.php">
+                    <i class='bx bx-compass'></i>
+                    <span class="links_name">Listings</span>
                 </a>
-                <span class="tooltip">Items</span>
+                <span class="tooltip">Listings</span>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-heart'></i>
+                    <span class="links_name">Favorites</span>
+                </a>
+                <span class="tooltip">Favorites</span>
             </li>
             <li>
                 <a href="#">
                     <i class='bx bx-chat'></i>
-                    <span class="links_name">Messages</span>
+                    <span class="links_name">Groups</span>
                 </a>
-                <span class="tooltip">Messages</span>
+                <span class="tooltip">Groups</span>
             </li>
             <li>
-                <a href="reviews.php">
-                    <i class='bx bx-star'></i>
-                    <span class="links_name">Reviews</span>
-                </a>
-                <span class="tooltip">Reviews</span>
-            </li>
-            <li>
-                <a href="#">
-                    <i class='bx bx-compass'></i>
-                    <span class="links_name">Explore</span>
-                </a>
-                <span class="tooltip">Explore</span>
-            </li>
-            <li>
-                <a href="#">
+                <a href="items.php">
                     <i class='bx bx-user'></i>
-                    <span class="links_name">Profile</span>
+                    <span class="links_name">My Reviews</span>
                 </a>
-                <span class="tooltip">Profile</span>
+                <span class="tooltip">My Reviews</span>
             </li>
             <li class="logout">
                 <a href="/backend/logout.php">
