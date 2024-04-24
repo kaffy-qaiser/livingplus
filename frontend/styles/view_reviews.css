@@ -1,0 +1,165 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Container for alignment */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Styling for the review grid */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Individual review card */
+.review-card {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.review-title {
+    font-size: 18px;
+    color: #007BFF; /* Similar to Bootstrap's primary blue */
+}
+
+.review-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.review-details li {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Back button styling */
+.back-button-container {
+    margin-top: 20px;
+}
+
+.back-button {
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.add-btn, .back-btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #3682F4;
+    width: 140px;
+}
+
+.add-btn {
+    background-color: #3682F4;
+    color: #FFED59;
+    border-width: 3px;
+    height: 45px;
+}
+.back-btn {
+    background-color: white;
+    color: black ;
+    border-color: #3682F4 ;
+    border-width: 3px;
+    height: 45px;
+    margin-right: 48% ;
+    margin-left: 17%;
+}
+
+
+.listing-header {
+    text-align: center; /* Center the text within the header */
+}
+.review-text {
+    color: black;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.review-details {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.review-details li {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+#noReviewsMsg {
+    text-align: center;
+    color: #999;
+    font-size: 16px;
+}
+.review-details {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.review-details li {
+    font-size: 14px;
+    color: #3682F4;
+    flex: 1; /* This will make each item take equal space */
+    text-align: center; /* Center align the text within each item */
+    padding: 0 10px; /* Adds padding on left and right for spacing */
+}
+
+/* Optional: add a border or divider between items */
+.review-details li:not(:last-child) {
+    border-right: 1px solid #ddd; /* Adds a vertical line between items */
+}
+
+
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+    .back-btn {
+        background-color: white;
+        color: black ;
+        border-color: #3682F4 ;
+        border-width: 3px;
+        height: 45px;
+        margin-right: 0px ;
+        margin-left: 0px;
+
+    }
+}

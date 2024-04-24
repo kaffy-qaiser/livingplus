@@ -43,7 +43,7 @@ if ($dbHandle) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="styles/add_review.css">
-    <link rel="stylesheet" type="text/css" href="styles/search.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
 </head>
 <body>
     <?php include 'navbar.php'; ?>

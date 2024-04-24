@@ -1,65 +1,188 @@
-main {
-    padding-top: 20px;
-}
-
-.card {
-    border: 2px solid #3682F4; 
-    border-radius: 15px; 
-}
-
-h1 {
-    font-family: 'Catamaran';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 55px;
-    line-height: 108px;
-    color: #000000;
-}
 body {
-    font-family: 'Catamaran';
-    font-style: normal;
-    background-color: #FFFFFF;
+    font-family: 'Catamaran', sans-serif;
+    background-color: #F4F4F4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
 }
 
-.button-container {
-    display: flex;
-    flex-direction: column;
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-@media (min-width: 992px) { 
-    .button-container {
-        flex-direction: row; 
-    }
-    .button-container > button {
-        margin-right: 20px;
-    }
-}
 .grid-container {
     display: grid;
-    grid-template-columns: auto 2fr 1fr;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.search-container {
+    width: 70%;
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+}
+
+.search-container input[type="text"] {
+    width: 58%;
+    padding: 10px;
+    border: 2px solid #DDE2E5;
+    border-radius: 25px;
+    font-size: 16px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.search-container button:hover {
+    background-color: #464646;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 20px;
 }
 
-h1 {
-    margin: 0;
-}
-
-.search-bar {
-    padding: 6px 12px;
-    font-size: 1rem;
-    border: 2px solid #3682F4;
-    border-radius: 20px;
-    align-self: center;
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-.btn-search {
-    padding: 6px 12px;
-    font-size: 1rem;
+.review-card {
+    width: 100%;
+    max-width: 800px;
+    border: 1px solid #DDE2E5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.card-image {
+    flex: 0 0 auto;  /* Keep the image size fixed, preventing it from stretching */
+    width: 100%; /* Ensure the image fills the designated space */
+    max-width: 320px; /* Adjust the maximum width as needed */
+    height: auto; /* Maintain the aspect ratio of the image */
+}
+
+.card-info {
+    flex-grow: 1;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: center;
+    gap: 10px;
+}
+
+.add-btn, .view-btn, .like-btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #3682F4;
+    width: 140px;
+}
+
+.view-btn {
     background-color: #3682F4;
     color: white;
-    border: 2px solid #FFFF00;
-    border-radius: 20px;
-    width: 100%; 
+}
+
+.add-btn {
+    background-color: white;
+    color: #3682F4;
+    border-color: #3682F4;
+    border-width: 3px;
+    height: 45px;
+}
+
+.like-btn {
+    background-color: white;
+    color: red;
+    border-color: red;
+    border-width: 3px;
+    height: 45px;
+    margin-top: 10px;
+}
+
+.like-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+.like-btn.active {
+    background-color: red;
+    color: white;
+}
+
+.view-btn:hover {
+    background-color: #2c6fe0;
+}
+
+.add-btn:hover {
+    background-color: #d9dadf;
+}
+
+.card-heading {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* This will add '...' at the end if the text is too long */
+}
+
+@media (max-width: 768px) {
+    .card-content {
+        flex-direction: column;
+    }
+
+    .card-image {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .action-buttons {
+        align-items: center;
+    }
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }

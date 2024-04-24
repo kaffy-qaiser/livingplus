@@ -1,6 +1,7 @@
 <?php
 // Include db.php at the start to ensure PHP code is executed before sending HTML content.
 include_once '../backend/db.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +25,6 @@ include_once '../backend/db.php';
         <div class="form-group floating-label">
             <input id="password" type="password" name="password" required>
             <label for="password">Password</label>
-            <a href="/reset-password" class="forgot-password">Forgot Password?</a>
         </div>
         <div class="button-group">
             <button type="submit">Login</button>

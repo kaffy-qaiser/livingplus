@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Catamaran', sans-serif;
+    font-style: normal;
+    color: #333;
+}
+body {
+    background-color: #f4f4f9;
+    padding: 20px;
+}
+.container {
+    max-width: 80%;
+    margin: auto;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    padding-bottom: 20px;
+}
+.card {
+    background: #fff;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    border-color: #0056b3;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.card-title {
+    font-size: 1.5rem;
+    color: #333;
+}
+.card-text {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #666;
+}
+.btn {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+}
+.btn:hover {
+    background-color: #0056b3;
+}
+.btn:active {
+    background-color: #004494;
+}
+.btn-success {
+    background-color: #28a745;
+    margin-right: 75%;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+.btn-secondary {
+    background-color: #6c757d;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}

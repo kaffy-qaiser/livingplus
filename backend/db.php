@@ -3,13 +3,14 @@
     error_reporting(E_ALL);
 
     // Database connection parameters
-    $host = "db";
+    $host = "localhost";
     $port = "5432";
     $database = "example";
-    $user = "localuser";
+    $user = "kaffyqaiser";
     $password = "cs4640LocalUser!";
 
-    // Establishing a connection to the database
+
+// Establishing a connection to the database
     $dbHandle = pg_connect("host=$host port=$port dbname=$database user=$user password=$password");
 
     if ($dbHandle) {
@@ -89,6 +90,14 @@
         );
     ";
 
+    $createLikedTable = "
+        CREATE TABLE IF NOT EXISTS Liked (
+            UserID INT NOT NULL,
+            ListingID INT NOT NULL,
+            PRIMARY KEY (UserID, ListingID),
+            FOREIGN KEY (UserID) REFERENCES login(id),
+            FOREIGN KEY (ListingID) REFERENCES listings(id)); ";
+
 
     // Execute table creation SQL
     pg_query($dbHandle, $createLoginTable) or die('Login table creation failed: ' . pg_last_error($dbHandle));
@@ -96,15 +105,16 @@
     pg_query($dbHandle, $createReviewsTable) or die('Reviews table creation failed: ' . pg_last_error($dbHandle));
     pg_query($dbHandle, $createGroupsTable) or die('Groups table creation failed: ' . pg_last_error($dbHandle));
     pg_query($dbHandle, $createGroupMembershipsTable) or die('Group memberships table creation failed: ' . pg_last_error($dbHandle));
+    pg_query($dbHandle, $createLikedTable) or die('Liked table creation failed: ' . pg_last_error($dbHandle));
 
 
 
     // Insert dummy data into login table with conflict handling
-    // $insertLoginData = "
-    //     INSERT INTO login (username, password) VALUES
-    //     ('user1', 'pass1'),
-    //     ('user2', 'pass2')
-    // ";
+    $insertLoginData = "
+         INSERT INTO login (username, password) VALUES
+            ('user1', 'pass1'),
+            ('user2', 'pass2')
+     ";
 
     $insertListingsData = "
         INSERT INTO listings (
@@ -133,6 +143,7 @@
     // Execute data insertion SQL
    // pg_query($dbHandle, $insertLoginData) or die('Login data insertion failed: ' . pg_last_error($dbHandle));
     pg_query($dbHandle, $insertListingsData) or die('Listings data insertion failed: ' . pg_last_error($dbHandle));
+    //pg_query($dbHandle, $insertLoginData) or die('Login data insertion failed: ' . pg_last_error($dbHandle));
 
 
     // echo "Data insertion successful, excluding reviews.\n";

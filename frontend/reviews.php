@@ -1,5 +1,6 @@
 <?php
 include '../backend/db.php';
+session_start(); // Start the session
 
 // Initialize an empty array for housing data
 $housingData = [];
@@ -12,7 +13,7 @@ if ($dbHandle) {
         if (!$result) {
             throw new Exception("Query failed: " . pg_last_error($dbHandle));
         }
-        
+
         // Fetch all housing data
         $housingData = pg_fetch_all($result, PGSQL_ASSOC);
         if (empty($housingData)) {
@@ -25,6 +26,49 @@ if ($dbHandle) {
     }
 } else {
     echo "<script>alert('Database connection not established.');</script>";
+}
+
+// Search functionality
+$searchTerm = '';
+if (isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+
+    $filteredHousingData = array_filter($housingData, function ($housing) use ($searchTerm) {
+        return stripos($housing['name'], $searchTerm) !== false;
+    });
+
+    $housingData = $filteredHousingData;
+}
+
+// Check if the user is logged in
+$userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+
+// Handle like/unlike functionality
+if (isset($_POST['action']) && isset($_POST['listingId'])) {
+    $action = $_POST['action'];
+    $listingId = $_POST['listingId'];
+
+    if ($action === 'like') {
+        // User wants to like the listing
+        $query = "INSERT INTO Liked (UserID, ListingID) VALUES ($1, $2)";
+        $result = pg_query_params($dbHandle, $query, array($userId, $listingId));
+
+        if ($result) {
+            echo "<script>alert('Listing liked successfully.');</script>";
+        } else {
+            echo "<script>alert('Error liking the listing: " . pg_last_error($dbHandle) . "');</script>";
+        }
+    } elseif ($action === 'unlike') {
+        // User wants to unlike the listing
+        $query = "DELETE FROM Liked WHERE UserID = $1 AND ListingID = $2";
+        $result = pg_query_params($dbHandle, $query, array($userId, $listingId));
+
+        if ($result) {
+            echo "<script>alert('Listing unliked successfully.');</script>";
+        } else {
+            echo "<script>alert('Error unliking the listing: " . pg_last_error($dbHandle) . "');</script>";
+        }
+    }
 }
 ?>
 
@@ -41,7 +85,7 @@ if ($dbHandle) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" type="text/css" href="styles/search.css">
+    <link rel="stylesheet" type="text/css" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/reviews.css">
 </head>
 <body>
@@ -50,26 +94,35 @@ if ($dbHandle) {
     <main class="container">
         <div class="grid-container">
             <h1>Housing Reviews</h1>
+            <div class="search-container">
+                <form action="" method="GET">
+                    <input type="text" placeholder="Enter Listing.." name="search" value="<?= htmlspecialchars($searchTerm); ?>" style="width: 350px">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
         </div>
         <div id="noDataAlert" class="alert alert-warning" style="display:none;">
             No housing data available at the moment.
         </div>
-        
-        <div class="row">
+
+        <div class="flex-container">
             <?php if (!empty($housingData)): foreach ($housingData as $housing): ?>
-                <div class="col-lg-4 col-md-12 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= html_entity_decode($housing['name']); ?></h5>
-                            <p class="card-text">Address: <?= preg_replace('/^(.*)$/', '$1', html_entity_decode($housing['address'])); ?></p>
-                            <p class="card-text"><img src="<?= html_entity_decode($housing['picture_url']); ?>" alt="Image of <?= html_entity_decode($housing['name']); ?>" class="img-fluid"></p>
-                            <p class="card-text">Near Places: <?= html_entity_decode($housing['near_places']); ?></p>
-                            <p class="card-text">Max Beds: <?= html_entity_decode($housing['max_beds']); ?></p>
-                            <p class="card-text">Max Baths: <?= html_entity_decode($housing['max_baths']); ?></p>
-                            <p class="card-text">Price: $<?= number_format(html_entity_decode($housing['price']), 2); ?></p>
-                            <a href="<?= html_entity_decode($housing['listing_url']); ?>" target="_blank" class="btn btn-link">Visit Listing Website</a>
-                            <button type="button" class="btn btn-primary" onclick="window.location.href='view_reviews.php?id=<?= urlencode($housing['id']); ?>'">View Reviews</button>
-                            <a href="add_review.php?name=<?= urlencode($housing['name']); ?>" class="btn btn-secondary">Add Review</a>
+                <div class="card-container">
+                    <div class="review-card">
+                        <div class="card-content">
+                            <div class="card-image">
+                                <img src="<?= html_entity_decode($housing['picture_url']); ?>" alt="Image of <?= html_entity_decode($housing['name']); ?>" class="img-fluid" style=" width: 300px" >
+                            </div>
+                            <div class="card-info">
+                                <h5 class="card-heading"><?= htmlspecialchars($housing['name']); ?></h5>
+                                <p class="address-text">Address: <?= preg_replace('/^(.*)$/', '$1', html_entity_decode($housing['address'])); ?></p>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="button" class="like-btn" >Like Housing</button>
+                                <button type="button" class="add-btn" onclick="window.location.href='<?php echo html_entity_decode($housing['listing_url']); ?>'">Learn More</button>
+                                <button type="button" class="view-btn" onclick="window.location.href='view_reviews.php?id=<?= urlencode($housing['id']); ?>'">View Reviews</button>
+                                <button type="button" class="view-btn" onclick="window.location.href='add_review.php?name=<?= urlencode($housing['name']); ?>'">Add Review</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,8 +131,16 @@ if ($dbHandle) {
             <?php endif; ?>
         </div>
     </main>
+    <script>
+        $(document).ready(function() {
+            $(".like-btn").click(function() {
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </body>
 </html>

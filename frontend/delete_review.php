@@ -1,34 +1,31 @@
 <?php
-session_start();
-include '../backend/db.php'; // Adjust this path as necessary. Ensure db.php uses pg_connect for PostgreSQL.
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Check if the review_id and listing_id are set in the GET parameters
-if (isset($_GET['review_id']) && isset($_GET['listing_id'])) {
-    $review_id = $_GET['review_id'];
-    $listing_id = $_GET['listing_id'];
+include 'navbar.php';
+include '../backend/db.php';
 
-    // Connect to the database
-    // Assuming $dbHandle is the variable holding the connection from db.php
-    if ($dbHandle) {
-        // Prepare and execute the query to delete the review
-        $result = pg_prepare($dbHandle, "delete_review", "DELETE FROM reviews WHERE id = $1 AND listing_id = $2");
-        $result = pg_execute($dbHandle, "delete_review", array($review_id, $listing_id));
+// Get review_id from the query string and sanitize it
+$review_id = isset($_GET['review_id']) ? intval($_GET['review_id']) : 0;
 
-        if ($result) {
-            // Redirect to the items page after successful deletion
-            header('Location: items.php');
-            exit;
-        } else {
-            echo "Failed to delete the review.";
-            exit;
-        }
+if ($dbHandle) {
+    // Prepare and execute the query to delete the review
+    $result = pg_prepare($dbHandle, "delete_review", "DELETE FROM reviews WHERE id = $1");
+    $result = pg_execute($dbHandle, "delete_review", array($review_id));
+
+    // Check if the delete was successful
+    if ($result && pg_affected_rows($result) > 0) {
+        // Redirect back to the reviews list with a success message
+        echo "<script>alert('Review deleted successfully.'); window.location = 'reviews.php';</script>";
     } else {
-        echo "Failed to connect to the database.";
-        exit;
+        // Notify user of failure
+        echo "<script>alert('Failed to delete the review or review does not exist.'); window.location = 'reviews.php';</script>";
     }
 } else {
-    // Redirect back to the items page if the GET parameters are not set
-    header('Location: items.php');
+    // Exit or handle the error as appropriate if database connection fails
+    echo "<script>alert('Database connection failed.'); window.location = 'reviews.php';</script>";
     exit;
 }
 ?>
+
