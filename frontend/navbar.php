@@ -48,7 +48,7 @@
             <span class="tooltip">Favorites</span>
         </li>
         <li>
-            <a href="groups.php" </a>
+            <a href="groups.php">
                 <i class='bx bx-chat'></i>
                 <span class="links_name">Groups</span>
             </a>
@@ -62,7 +62,7 @@
             <span class="tooltip">My Reviews</span>
         </li>
         <li class="logout">
-            <a href="/backend/logout.php">
+            <a href="../backend/logout.php">
                 <i class='bx bx-log-out'></i>
                 <span class="links_name">Logout</span>
             </a>

@@ -29,12 +29,17 @@ include_once '../backend/db.php';
         <div class="button-group">
             <button type="submit">Login</button>
             <img src="images/auth_or.png" alt="google_auth" class="authImage">
-            <button type="button" class="google-login" onclick="window.location.href='google_auth.php';">
-                <img src="images/google_logo.png" alt="Google" class="google-logo">Sign in with Google
+            <button type="button" class="google-login" id="signUpButton">
+                <img src="" class="google-logo">Sign Up</img>
             </button>
+
         </div>
     </form>
 </div>
+<script>
+    const signUpButton = document.getElementById('signUpButton');
+    signUpButton.onclick = function() {window.location.href = 'registration.php';};
+</script>
 <!--  The navbar was taken from this youtube video: https://www.youtube.com/watch?v=wEfaoAa99XY-->
 <script>
     document.addEventListener("DOMContentLoaded", function() {
