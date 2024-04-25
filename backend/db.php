@@ -3,11 +3,17 @@
     error_reporting(E_ALL);
 
     // Database connection parameters
-    $host = "db";
+    // $host = "db";
+    // $port = "5432";
+    // $database = "example";
+    // $user = "localuser";
+    // $password = "cs4640LocalUser!";
+    $host = "localhost";
     $port = "5432";
-    $database = "example";
-    $user = "localuser";
-    $password = "cs4640LocalUser!";
+    $database = "hws7ug";
+    $user = "hws7ug";
+    $password = "pCfxODw_OGww";
+
 
 
 // Establishing a connection to the database
