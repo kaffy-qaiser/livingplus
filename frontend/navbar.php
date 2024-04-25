@@ -41,7 +41,7 @@
             <span class="tooltip">Listings</span>
         </li>
         <li>
-            <a href="liked.php">
+            <a href="">
                 <i class='bx bx-heart'></i>
                 <span class="links_name">Favorites</span>
             </a>
