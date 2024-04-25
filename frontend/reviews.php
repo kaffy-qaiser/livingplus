@@ -87,6 +87,38 @@ if (isset($_POST['action']) && isset($_POST['listingId'])) {
 
     <link rel="stylesheet" type="text/css" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/reviews.css">
+    <style>
+        .search-container {
+            width: 70%;
+            display: flex;
+            justify-content: right;
+            gap: 20px;
+        }
+
+        .search-container input[type="text"] {
+            width: 58%;
+            padding: 10px;
+            border: 2px solid #DDE2E5;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .search-container button {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .search-container button:hover {
+            background-color: #464646;
+        }
+
+    </style>
 </head>
 <body>
     <?php include 'navbar.php'; ?>
