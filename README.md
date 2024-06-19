@@ -32,7 +32,7 @@ Living+ is a housing marketplace designed to help students find roommates and ho
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/livingplus.git
+   git clone https://github.com/kaffy-qaiser/livingplus.git
    ```
 2. Navigate to the project directory:
    ```bash
@@ -63,12 +63,5 @@ Contributions are welcome! Please fork the repository and submit a pull request 
 
 This project is licensed under the MIT License.
 
-## Contact
 
-For any questions or inquiries, please reach out at [your-email@example.com](mailto:your-email@example.com).
 
-## Links
-
-- [GitHub Repository](https://github.com/dashboard)
-
-![Living+](livingplus.png)
